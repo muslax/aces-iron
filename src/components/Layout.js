@@ -23,6 +23,10 @@ const Layout = ({ children }) => (
           'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
       }
 
+      a, a:active, a:visited {
+        color: #0070f3;
+      }
+
       .container {
         max-width: 40rem;
         margin: 1.5rem auto;
@@ -46,6 +50,6 @@ const Layout = ({ children }) => (
 
 export default Layout
 
-Layout.propTypes = {
-  children: PropTypes.node,
-}
+// Layout.propTypes = {
+//   children: PropTypes.node,
+// }
