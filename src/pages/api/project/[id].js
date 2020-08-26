@@ -12,7 +12,6 @@ export default withSession(async (req, res) => {
 
   if (user) {
     const url = process.env.NEXT_PUBLIC_BASE_API_URL + `/projects/${id}`
-    // const url = `http://localhost:8000/v1/licenses/${user.license}/${id}`
     console.log(url)
     const response = await fetch(url, {
       method: 'GET',
