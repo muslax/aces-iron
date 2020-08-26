@@ -24,10 +24,16 @@ const Layout = ({ children }) => (
       }
 
       .container {
-        max-width: 65rem;
+        max-width: 40rem;
         margin: 1.5rem auto;
         padding-left: 1rem;
         padding-right: 1rem;
+      }
+
+      .pre {
+        width: 100%;
+        overflow-x: scroll;
+        background: #efefef;
       }
     `}</style>
     <Header />

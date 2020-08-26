@@ -15,8 +15,9 @@ const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    const body = {
-      username: e.currentTarget.username.value,
+    const body = {formBody:
+      'username=' + e.currentTarget.username.value + '&' +
+      'password=' + e.currentTarget.password.value
     }
 
     try {

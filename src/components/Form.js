@@ -5,7 +5,12 @@ const Form = ({ errorMessage, onSubmit }) => (
   <form onSubmit={onSubmit}>
     <label>
       <span>Type your GitHub username</span>
-      <input type="text" name="username" required />
+      <input type="text" name="username" autoComplete="false" required />
+    </label>
+
+    <label>
+      <span>Password</span>
+      <input type="text" name="password" autoComplete="false" required />
     </label>
 
     <button type="submit">Login</button>

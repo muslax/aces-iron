@@ -27,15 +27,27 @@ const Header = () => {
             <>
               <li>
                 <Link href="/profile-sg">
-                  <a>
-                    <img src={user.avatarUrl} width={20} height={20} /> Profile
-                    (Static Generation, recommended)
-                  </a>
+                  <a>SSG</a>
                 </Link>
               </li>
               <li>
                 <Link href="/profile-ssr">
-                  <a>Profile (Server-side Rendering)</a>
+                  <a>SSR</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/license">
+                  <a>License</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/mixed">
+                  <a>Mixed</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/sg-projects">
+                  <a>Projects</a>
                 </Link>
               </li>
               <li>
@@ -52,11 +64,11 @@ const Header = () => {
               </li>
             </>
           )}
-          <li>
+          {/* <li>
             <a href="https://github.com/vvo/next-iron-session">
               <img src="/GitHub-Mark-Light-32px.png" widht="32" height="32" />
             </a>
-          </li>
+          </li> */}
         </ul>
       </nav>
       <style jsx>{`
