@@ -18,7 +18,7 @@ const Projects = () => {
             <a className="abc"><code>{project._id}</code></a>
           </Link>{` `}
           <span> &nbsp;&nbsp;&nbsp; </span>{` `}
-          <Link href={`/[license]/[project]`} as={`/${project.license}/${project._id}`}>
+          <Link href={`/[license]/[id]`} as={`/${project.license}/${project._id}`}>
           <a className="abc"><code>{project._id}</code></a>
           </Link>
         </div>
