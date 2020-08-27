@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const Form = ({ errorMessage, onSubmit }) => (
   <form onSubmit={onSubmit}>
     <label>
-      <span>Type your GitHub username</span>
+      <span>Username</span>
       <input type="text" name="username" autoComplete="false" required />
     </label>
 
