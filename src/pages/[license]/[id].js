@@ -2,6 +2,7 @@ import withSession from '../../lib/session'
 import useUser from '../../lib/useUser'
 import useProject from '../../lib/useProject'
 import Layout from '../../components/Layout'
+import Link from 'next/link'
 // import { useRouter } from 'next/router';
 import useSWR from 'swr'
 import apiFetchGet from '../../lib/apiFetchGet'
@@ -46,8 +47,8 @@ const ProjectPage = ({ project }) => {
 
   if (!project) return (
     <Layout>
-      <h1>Your Project Info</h1>
-      <h3>SSR</h3>
+      <h1>Detail Project</h1>
+      <h3>Full static dengan getStaticPaths & getStaticProps</h3>
       <p>Loading...</p>
 
       {/* <Projects /> */}
@@ -56,8 +57,13 @@ const ProjectPage = ({ project }) => {
 
   return (
     <Layout>
-      <h1>Your Project Info</h1>
-      <h3>SSR</h3>
+      <h1>Detail Project</h1>
+      <h3>Full static dengan getStaticPaths & getStaticProps</h3>
+      <h3>{project?.title.toUpperCase()}</h3>
+      <br/>
+      <Link href="/sg-projects">
+        <a>Back to Projects</a>
+      </Link>
 
       <pre className="pre">{JSON.stringify(project, undefined, 2)}</pre>
 
