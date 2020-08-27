@@ -19,8 +19,7 @@ const SgProfile = () => {
     <Layout>
       <h1>User Profile</h1>
       <h3>
-        Static Generation via React Hook
-        and the /api/user route using SWR
+        useUser via NextJS API (/api/user) dengan hook withSession
       </h3>
 
       <pre className="pre">{JSON.stringify(user, undefined, 2)}</pre>

@@ -8,7 +8,8 @@ const SsrProfile = ({ user }) => {
     <Layout>
       <h1>Your GitHub profile</h1>
       <h3>
-        SSR and getServerSideProps
+        SSR (getServerSideProps) mengambil data session
+        melaui hook withSession
       </h3>
 
       {user?.isLoggedIn && (

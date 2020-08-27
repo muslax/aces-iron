@@ -10,7 +10,7 @@ const Projects = () => {
 
   return (
     <div>
-      <h3>PROJECTS COMPONENT</h3>
+      <h3>I am Project Component</h3>
       {projects.map((project) => (
         <div key={project._id}>
         {/* Next.js auto-prefetches automatically based on viewport. The prefetch attribute is no longer needed. */}
