@@ -12,23 +12,14 @@ const SGLicense = () => {
     )
   }
 
-  if (!license) {
-    return (
-      <Layout>
-        <h1>License Info</h1>
-        <h3>useLicense</h3>
-        <p>Loading...</p>
-      </Layout>
-    )
-  }
-
-  // const { license } = useLicense({ token: user.token })
-
   return (
     <Layout>
       <h1>License Info</h1>
       <h3>useLicense via NextJS API (/api/license)</h3>
-      <pre className="pre">{JSON.stringify(license, undefined, 2)}</pre>
+      {!license && <p>Loading...</p>}
+      {license && (
+        <pre className="pre">{JSON.stringify(license, undefined, 2)}</pre>
+      )}
     </Layout>
   )
 }

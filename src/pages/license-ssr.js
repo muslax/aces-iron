@@ -1,23 +1,18 @@
 import Layout from '../components/Layout'
-// import MyProjects from '../components/MyProjects'
 import withSession from '../lib/session'
+import useSWR from 'swr'
+import useLicense from '../lib/useLicense'
 import PropTypes from 'prop-types'
 
-const SsrProfile = ({ user }) => {
+const SsrLicense = ({ license }) => {
   return (
     <Layout>
-      <h1>Profile SSR</h1>
+      <h1>License SSR</h1>
       <h3>
         getServerSideProps menggunakan hook withSession
       </h3>
 
-      {user?.isLoggedIn && (
-        <>
-          <pre className="pre">{JSON.stringify(user, undefined, 2)}</pre>
-        </>
-      )}
-
-      {/* <MyProjects /> */}
+      <pre className="pre">{JSON.stringify(license, undefined, 2)}</pre>
 
       <h3>Lorem ipsum</h3>
       <p>Mus nibh vehicula interdum orci aliquet odio vivamus urna fermentum class, senectus vulputate curae proin efficitur neque elit finibus libero enim, per phasellus molestie magna tempus himenaeos consectetur vitae id maximus, congue felis feugiat quam velit lobortis nec sagittis pulvinar. Tortor nibh suscipit fringilla purus class mollis integer bibendum donec, dolor semper pulvinar aenean lectus a eu tellus pharetra, in nulla scelerisque congue imperdiet dui sapien inceptos penatibus blandit, nascetur eros metus ut phasellus nostra ante eleifend. Tortor iaculis ac imperdiet fames semper scelerisque feugiat urna, tempor diam parturient consequat morbi suspendisse cubilia nec mollis, proin arcu ornare tempus torquent vel turpis lacus aliquam, curabitur adipiscing odio pulvinar auctor habitant dictumst. Nullam leo dignissim senectus arcu platea vitae laoreet felis feugiat, habitant sit volutpat gravida purus id parturient ex sem, imperdiet non ultricies litora erat penatibus himenaeos nostra tristique augue, sapien accumsan facilisi placerat nec bibendum habitasse hendrerit. Et porta augue nisl finibus parturient facilisi in risus, blandit pulvinar pellentesque donec dictum massa pharetra litora non, class urna primis mollis eleifend convallis suspendisse ornare ullamcorper, placerat venenatis est lacinia lorem luctus curabitur. Donec maximus sociosqu lobortis iaculis adipiscing sem purus sapien, condimentum orci tellus eu integer quis pretium mi, ridiculus cras libero fusce dapibus conubia litora molestie gravida, malesuada elementum torquent urna rutrum leo sodales. Lobortis nec fermentum tempor interdum semper lacus aliquam massa erat, pulvinar nostra etiam efficitur maecenas pharetra molestie phasellus class, venenatis parturient justo felis senectus cursus curae litora, hac potenti tincidunt curabitur magnis sed natoque eu. Torquent metus orci sodales ut congue accumsan tristique lacinia diam leo, lectus elit justo semper sem enim nostra maximus interdum, eros parturient dapibus maecenas rhoncus etiam class curae adipiscing, tempus ipsum sed aptent in integer tellus himenaeos est. Dignissim urna nibh cras malesuada tincidunt himenaeos bibendum facilisis fames, justo euismod quam libero vulputate quis vel sodales dictum, efficitur risus elementum sed in pretium lobortis lorem class pellentesque, non aliquam auctor curabitur tempor fusce metus eget.</p>
@@ -29,20 +24,28 @@ const SsrProfile = ({ user }) => {
 
 export const getServerSideProps = withSession(async function ({ req, res }) {
   const user = req.session.get('user')
-
   if (user === undefined) {
     res.setHeader('location', '/login')
     res.statusCode = 302
     res.end()
     return { props: {} }
   }
+  const url = process.env.NEXT_PUBLIC_BASE_API_URL + '/licenses'
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + user.token,
+    }
+  })
 
+  const license = await response.json()
   return {
-    props: { user: req.session.get('user') },
+    props: { license },
   }
 })
 
-export default SsrProfile
+export default SsrLicense
 
 // SsrProfile.propTypes = {
 //   user: PropTypes.shape({

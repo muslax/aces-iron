@@ -36,13 +36,28 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/license">
-                  <a>License</a>
+                <Link href="/license-sg1">
+                  <a>LicSG1</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/license-sg2">
+                  <a>LicSG2</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/license-ssr">
+                  <a>LicSSR</a>
                 </Link>
               </li>
               <li>
                 <Link href="/mixed">
-                  <a>Mixed</a>
+                  <a>Mixed1</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/mixed-2">
+                  <a>Mixed2</a>
                 </Link>
               </li>
               <li>
@@ -77,6 +92,7 @@ const Header = () => {
           list-style: none;
           margin-left: 0;
           padding-left: 0;
+          align-items: center;
         }
 
         li {
@@ -84,7 +100,7 @@ const Header = () => {
           display: flex;
         }
 
-        li:first-child {
+        li:last-child {
           margin-left: auto;
         }
 
@@ -103,6 +119,9 @@ const Header = () => {
           padding: 0.2rem;
           color: #fff;
           background-color: #333;
+        }
+        nav {
+          padding: 0 2rem;
         }
       `}</style>
     </header>
