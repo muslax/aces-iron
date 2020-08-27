@@ -24,8 +24,6 @@ const SsrProject = ({ user, url }) => {
 
   return (
     <Layout>
-      {/* <p>{url}</p> */}
-      {/* <pre className="pre">{JSON.stringify(user, undefined, 2)}</pre> */}
       <h1>Detail Project</h1>
       <h3>
         SSR dengan hook withSession, data is fetched on page using SWR
