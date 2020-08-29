@@ -10,16 +10,36 @@ const Projects = () => {
 
   return (
     <div>
-      <h3>PROJECTS COMPONENT</h3>
+      <h3>Project component</h3>
       {projects.map((project) => (
-        <p key={project._id}>
+        <div key={project._id}>
         {/* Next.js auto-prefetches automatically based on viewport. The prefetch attribute is no longer needed. */}
-          <Link href={`/[license]/[project]`} as={`/${project.license}/${project._id}`}>
-            <a className="abc">{project._id}</a>
+          <Link href={`/projects/[id]`} as={`/projects/${project._id}`}>
+            <a className="abc"><code>{project._id}</code></a>
+          </Link>{` `}
+          <span> &nbsp;&nbsp;&nbsp; </span>{` `}
+          <Link href={`/[license]/[id]`} as={`/${project.license}/${project._id}`}>
+          <a className="abc"><code>{project._id}</code></a>
           </Link>
-        </p>
+        </div>
       ))}
+      <br/>
       <pre className="pre">{JSON.stringify(projects, undefined, 2)}</pre>
+      <style jsx>{`
+      div {
+        margin-bottom: 6px;
+      }
+        a {
+          font-size: 1.125rem;
+          text-decoration: none;
+          padding-bottom: 2px;
+          border-bottom: 1px solid #fff;
+        }
+        a:hover {
+          color: #00a0ff;
+          border-bottom-color: #00a0ff;
+        }
+      `}</style>
     </div>
   )
 }

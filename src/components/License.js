@@ -10,7 +10,7 @@ const License = () => {
 
   return (
     <div>
-      <h3>License component using useLicense React Hook</h3>
+      {/* <h3>License component using useLicense React Hook</h3> */}
       <pre className="pre">{JSON.stringify(license, undefined, 2)}</pre>
     </div>
   )

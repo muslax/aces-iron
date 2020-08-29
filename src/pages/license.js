@@ -6,23 +6,20 @@ const SGLicense = () => {
   const { user } = useUser({ redirectTo: '/login' })
   const { license } = useLicense({})
 
-  if (!license) {
+  if (!user || user.isLoggedIn === false) {
     return (
-      <Layout>
-        <h1>License Info</h1>
-        <h3>useLicense</h3>
-        <p>Loading...</p>
-      </Layout>
+      <Layout></Layout>
     )
   }
-
-  // const { license } = useLicense({ token: user.token })
 
   return (
     <Layout>
       <h1>License Info</h1>
-      <h3>useLicense</h3>
-      <pre className="pre">{JSON.stringify(license, undefined, 2)}</pre>
+      <h3>useLicense via NextJS API (/api/license)</h3>
+      {!license && <p>Loading...</p>}
+      {license && (
+        <pre className="pre">{JSON.stringify(license, undefined, 2)}</pre>
+      )}
     </Layout>
   )
 }
