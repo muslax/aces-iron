@@ -2,9 +2,12 @@ import useSWR from 'swr'
 import Layout from '../../components/Layout'
 import withSession from '../../lib/session'
 import apiFetchGet from '../../lib/apiFetchGet'
+import fetchJson from '../../lib/fetchJson'
 import Link from 'next/link'
+import FormEditProject from '../../components/FmEditProject'
 
 export const getServerSideProps = withSession(async function({req, res, params}) {
+  console.log("/use-projects/[id]:getServerSideProps")
   const user = req.session.get('user')
   if (user === undefined) {
     res.setHeader('location', '/login')
@@ -13,7 +16,6 @@ export const getServerSideProps = withSession(async function({req, res, params})
     return { props: {} }
   }
 
-  // const url = `https://aces-api-dev.herokuapp.com/v1/projects/${params.id}`
   const url = process.env.NEXT_PUBLIC_BASE_API_URL + `/projects/${params.id}`
   return {
     props: { user, url },
@@ -21,7 +23,25 @@ export const getServerSideProps = withSession(async function({req, res, params})
 })
 
 const SsrProject = ({ user, url }) => {
-  const { data: project } = useSWR([url, user.token], apiFetchGet)
+  // const { data: project } = useSWR([url, user.token], apiFetchGet)
+  const { data: project, mutate } = useSWR([url, user.token], apiFetchGet)
+
+  const submitHandler = async (values, {setSubmitting}) => {
+    console.log(JSON.stringify(values, null, 2))
+    console.log(values)
+    const url = `http://localhost:8000/v1/projects/${project._id}`
+    console.log(url)
+    const json = await fetchJson(url, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + user.token,
+      },
+      body: JSON.stringify(values),
+    })
+    mutate()
+    console.log(json)
+  }
 
   return (
     <Layout>
@@ -32,10 +52,19 @@ const SsrProject = ({ user, url }) => {
       {!project && <h3>...</h3>}
       <h3>{project?.title.toUpperCase()}</h3>
       <br/>
-      <Link href="/sg-projects">
+      <Link href="/use-projects">
         <a>Back to Projects</a>
       </Link>
       <br/>
+
+      {project && (
+        <div>
+          <br />
+          <FormEditProject model={ project } submitHandler={submitHandler} />
+          <br />
+        </div>
+      )}
+
       <pre className="pre">{JSON.stringify(project, undefined, 2)}</pre>
       <style jsx>{`
         a {

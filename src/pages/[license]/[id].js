@@ -14,7 +14,9 @@ import Projects from '../../components/Projects'
 // This function gets called at build time
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch('https://aces-api-dev.herokuapp.com/v1/licenses/burhan/projects')
+  // const res = await fetch('https://aces-api-dev.herokuapp.com/v1/licenses/burhan/projects')
+  const url = process.env.NEXT_PUBLIC_BASE_API_URL + '/burhan/projects'
+  const res = await fetch(url)
   const projects = await res.json()
 
   // Get the paths we want to pre-render based on posts

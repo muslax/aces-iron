@@ -12,9 +12,7 @@ import apiFetchGet from '../lib/apiFetchGet'
 
 export default function useProjects({redirectTo} = {}) {
   const { user } = useUser({ redirectTo: '/login' })
-  console.log(user)
-  // const url = process.env.NEXT_PUBLIC_BASE_API_URL + '/projects'
-  const url = 'https://aces-api-dev.herokuapp.com/v1/projects'
+  const url = process.env.NEXT_PUBLIC_BASE_API_URL + '/projects'
   const { data: projects, mutate: mutateProjects } = useSWR([url, user.token], apiFetchGet)
 
   useEffect(() => {
