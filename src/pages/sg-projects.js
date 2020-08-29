@@ -11,7 +11,7 @@ const SGProjects = () => {
 
   return (
     <Layout>
-      <h1>List of Projects</h1>
+      <h1>Projects using component</h1>
       {/* <h3>
         Projects component using SWR with JSON Web Token
       </h3> */}

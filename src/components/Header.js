@@ -7,6 +7,20 @@ import fetchJson from '../lib/fetchJson'
 const Header = () => {
   const { user, mutateUser } = useUser()
   const router = useRouter()
+  const loggedMenu = [
+    {href: "/profile-sg", label: "SSG"},
+    {href: "/profile-ssr", label: "SSR"},
+    {href: "/license-sg1", label: "LSG1"},
+    {href: "/license-sg2", label: "LSG2"},
+    // {href: "/license-ssr", label: "LSSR"},
+    // {href: "/mixed", label: "Mx1"},
+    // {href: "/mixed-2", label: "Mx2"},
+    {href: "/sg-projects", label: "ProComp"},
+    {href: "/use-projects", label: "UsePro1"},
+    {href: "/sg2-projects", label: "UsePro2"},
+    {href: "/sg3-projects", label: "UsePro3"},
+    {href: "/ssr-projects", label: "SSRPro"},
+  ]
   return (
     <header>
       <nav>
@@ -23,49 +37,16 @@ const Header = () => {
               </Link>
             </li>
           )}
+          {user?.isLoggedIn && loggedMenu.map((menu) => (
+            <li key={menu.href}>
+            {/* Next.js auto-prefetches automatically based on viewport. The prefetch attribute is no longer needed. */}
+              <Link href={menu.href}>
+                <a>{menu.label}</a>
+              </Link>
+            </li>
+          ))}
           {user?.isLoggedIn && (
-            <>
-              <li>
-                <Link href="/profile-sg">
-                  <a>SSG</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/profile-ssr">
-                  <a>SSR</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/license-sg1">
-                  <a>LicSG1</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/license-sg2">
-                  <a>LicSG2</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/license-ssr">
-                  <a>LicSSR</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/mixed">
-                  <a>Mixed1</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/mixed-2">
-                  <a>Mixed2</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/sg-projects">
-                  <a>Projects</a>
-                </Link>
-              </li>
-              <li>
+            <li>
                 <a
                   href="/api/logout"
                   onClick={async (e) => {
@@ -77,13 +58,7 @@ const Header = () => {
                   Logout
                 </a>
               </li>
-            </>
           )}
-          {/* <li>
-            <a href="https://github.com/vvo/next-iron-session">
-              <img src="/GitHub-Mark-Light-32px.png" widht="32" height="32" />
-            </a>
-          </li> */}
         </ul>
       </nav>
       <style jsx>{`
