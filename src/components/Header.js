@@ -18,6 +18,7 @@ const Header = () => {
     {href: "/sg-projects", label: "ProComp"},
     {href: "/use-projects", label: "UsePro1"},
     {href: "/sg2-projects", label: "UsePro2"},
+    {href: "/sg3-projects", label: "UsePro3"},
     {href: "/ssr-projects", label: "SSRPro"},
   ]
   return (

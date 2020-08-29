@@ -16,6 +16,16 @@ const SG2Projects = () => {
       <p>...</p>
     </Layout>
   )
+  // if (user && user.isLoggedIn) {
+  //   const { projects } = useProjects2({ redirectTo: '/' })
+  // }
+
+  if (!projects) return (
+    <Layout>
+      <h1>Projects via useProjects</h1>
+      <p>...</p>
+    </Layout>
+  )
 
   return (
     <Layout>
