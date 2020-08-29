@@ -29,7 +29,7 @@ const SsrProject = ({ user, url }) => {
   const submitHandler = async (values, {setSubmitting}) => {
     console.log(JSON.stringify(values, null, 2))
     console.log(values)
-    const url = `http://localhost:8000/v1/projects/${project._id}`
+    const url = process.env.NEXT_PUBLIC_BASE_API_URL +  `/projects/${project._id}`
     console.log(url)
     const json = await fetchJson(url, {
       method: 'PUT',
